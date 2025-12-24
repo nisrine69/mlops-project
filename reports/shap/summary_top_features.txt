@@ -1,0 +1,10 @@
+Model URI: models:/CaliforniaHousingModel/Production
+Top features by mean(|SHAP|):
+- MedInc: 0.555556
+- Latitude: 0.267838
+- AveOccup: 0.239745
+- Longitude: 0.209170
+- HouseAge: 0.082900
+- AveRooms: 0.052581
+- AveBedrms: 0.026196
+- Population: 0.018699

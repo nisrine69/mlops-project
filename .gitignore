@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+
+# OS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MLflow (gros fichiers, pas à versionner)
+mlruns/
+artifacts/
+
+# Reports (optionnel : garde si tu veux versionner tes rapports)
+# reports/
+
+# Tests cache
+.pytest_cache/
