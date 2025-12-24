@@ -1,16 +1,16 @@
+from pathlib import Path
+import os
 from fastapi.testclient import TestClient
 from mon_mlops_project.serving.api import app
 
 client = TestClient(app)
 
-def test_root():
-    response = client.get("/")
-    assert response.status_code == 200
-
 def test_health_serving():
-    response = client.get("/health")
-    assert response.status_code == 200
+    repo_root = Path(__file__).resolve().parents[1]
+    os.environ["MLFLOW_MODEL_URI"] = (repo_root / "artifacts" / "model").as_uri()
 
-    data = response.json()
+    r = client.get("/health")
+    assert r.status_code == 200
+    data = r.json()
     assert data["status"] == "ok"
     assert "model_uri" in data

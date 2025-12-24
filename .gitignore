@@ -14,7 +14,6 @@ __pycache__/
 
 # MLflow (gros fichiers, pas à versionner)
 mlruns/
-artifacts/
 
 # Reports (optionnel : garde si tu veux versionner tes rapports)
 # reports/
