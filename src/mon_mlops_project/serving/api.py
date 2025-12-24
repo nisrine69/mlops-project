@@ -13,9 +13,20 @@ MODEL_NAME = os.getenv("MLFLOW_MODEL_NAME", "CaliforniaHousingModel")
 MODEL_STAGE = os.getenv("MLFLOW_MODEL_STAGE", "Production")
 MODEL_PATH = os.getenv("MODEL_PATH", "/app/artifacts/model")
 
-
+from pathlib import Path
 
 def get_model_uri() -> str:
+    # 1) override explicite (super utile en CI)
+    explicit_uri = os.getenv("MLFLOW_MODEL_URI")
+    if explicit_uri:
+        return explicit_uri
+
+    # 2) fallback local si artifacts/model existe
+    local_path = Path(__file__).resolve().parents[3] / "artifacts" / "model"
+    if local_path.exists():
+        return local_path.as_uri()  # ex: file:///.../artifacts/model
+
+    # 3) sinon, registry MLflow
     return f"models:/{MODEL_NAME}/{MODEL_STAGE}"
 
 
